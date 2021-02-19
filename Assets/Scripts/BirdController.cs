@@ -6,7 +6,7 @@ using UnityEngine;
 public class BirdController : MonoBehaviour
 {
     public delegate void BirdDelegate();
-    public static event BirdDelegate BirdScores;
+    public static event BirdDelegate BirdScored;
     public static event BirdDelegate BirdHit;
 
     public float m_UpForce;
@@ -37,7 +37,7 @@ public class BirdController : MonoBehaviour
             BirdHit();
         } else if (collision.CompareTag("Score"))
         {
-            BirdScores();
+            BirdScored();
         }
     }
 }
