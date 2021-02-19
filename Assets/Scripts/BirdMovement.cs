@@ -19,7 +19,10 @@ public class BirdMovement : MonoBehaviour
 
     void Update()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, m_DownRotation, m_TiltSpeed * Time.deltaTime);
+        if (m_Rigidbody.simulated)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, m_DownRotation, m_TiltSpeed * Time.deltaTime);
+        }
     }
 
     public void Flap(float force)
@@ -27,5 +30,10 @@ public class BirdMovement : MonoBehaviour
         transform.rotation = m_UpRotation;
         m_Rigidbody.velocity = Vector2.zero;
         m_Rigidbody.AddForce(Vector2.up * force, ForceMode2D.Force);
+    }
+
+    public void SetSimulated(bool value)
+    {
+        m_Rigidbody.simulated = value;
     }
 }
