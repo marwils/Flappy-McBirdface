@@ -12,7 +12,7 @@ public class BirdMovement : MonoBehaviour
 
     private Rigidbody2D m_Rigidbody;
 
-    void Awake()
+    void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
     }

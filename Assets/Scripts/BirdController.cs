@@ -21,7 +21,6 @@ public class BirdController : MonoBehaviour
     void Start()
     {
         m_BirdMovement = GetComponent<BirdMovement>();
-        m_BirdMovement.SetSimulated(false);
         gameManager = GameManager.Instance;
     }
 
