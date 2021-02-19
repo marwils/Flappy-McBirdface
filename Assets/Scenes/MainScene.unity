@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6713408a9c8167b45a6be11485fb0ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ScrollSpeedX: 0.03
+  m_ScrollSpeedX: 0.025
   m_ScrollSpeedY: 0
   m_OffsetX: 0
   m_OffsetY: 0
@@ -779,7 +779,7 @@ MonoBehaviour:
     max: 3.2
   m_VelocityX: -1
   m_IntervalInSeconds: 1.5
-  m_SpawnDistance: 3.4
+  m_SpawnDistance: 3.6
 --- !u!1 &1001271349
 GameObject:
   m_ObjectHideFlags: 0

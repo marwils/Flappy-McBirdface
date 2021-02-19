@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LowerObject: {fileID: 5170200584684689092}
   m_UpperObject: {fileID: 5170200584854239265}
-  m_Distance: 5.7
+  m_Distance: 5.8
 --- !u!1 &5170200584684689093
 GameObject:
   m_ObjectHideFlags: 0
