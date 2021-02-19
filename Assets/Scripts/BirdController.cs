@@ -15,17 +15,20 @@ public class BirdController : MonoBehaviour
 
     private BirdMovement m_BirdMovement;
 
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
         m_BirdMovement = GetComponent<BirdMovement>();
         m_BirdMovement.SetSimulated(false);
+        gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.IsGameOver)
+        if (gameManager.IsGameOver)
         {
             return;
         }
