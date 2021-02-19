@@ -9,6 +9,8 @@ public class BirdController : MonoBehaviour
     public static event BirdDelegate BirdScored;
     public static event BirdDelegate BirdHit;
 
+    public Vector2 m_StartPosition;
+
     public float m_UpForce;
 
     private BirdMovement m_BirdMovement;
@@ -17,16 +19,45 @@ public class BirdController : MonoBehaviour
     void Start()
     {
         m_BirdMovement = GetComponent<BirdMovement>();
+        m_BirdMovement.SetSimulated(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.IsGameOver)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             m_BirdMovement.Flap(m_UpForce);
         }
+    }
 
+    private void OnEnable()
+    {
+        GameManager.GameStarted += OnGameStarted;
+        GameManager.GameResetted += OnGameResetted;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.GameStarted -= OnGameStarted;
+        GameManager.GameResetted -= OnGameResetted;
+    }
+
+    private void OnGameStarted()
+    {
+        m_BirdMovement.Stop();
+        m_BirdMovement.SetSimulated(true);
+    }
+
+    private void OnGameResetted()
+    {
+        transform.position = m_StartPosition;
+        transform.rotation = Quaternion.identity;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

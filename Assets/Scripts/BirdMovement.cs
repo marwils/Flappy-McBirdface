@@ -12,7 +12,7 @@ public class BirdMovement : MonoBehaviour
 
     private Rigidbody2D m_Rigidbody;
 
-    void Start()
+    void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -30,6 +30,11 @@ public class BirdMovement : MonoBehaviour
         transform.rotation = m_UpRotation;
         m_Rigidbody.velocity = Vector2.zero;
         m_Rigidbody.AddForce(Vector2.up * force, ForceMode2D.Force);
+    }
+
+    public void Stop()
+    {
+        m_Rigidbody.velocity = Vector2.zero;
     }
 
     public void SetSimulated(bool value)
