@@ -11,6 +11,9 @@ public class Countdown : MonoBehaviour
 
     public int m_CountdownInSeconds = 3;
 
+    public AudioSource countdownAudio;
+    public AudioSource countdownFinalAudio;
+
     private Text countdownText;
 
     private void OnEnable()
@@ -24,9 +27,11 @@ public class Countdown : MonoBehaviour
     {
         for (int count = m_CountdownInSeconds; count > 0; count--)
         {
+            countdownAudio.Play();
             countdownText.text = count.ToString();
             yield return new WaitForSeconds(1);
         }
+        countdownFinalAudio.Play();
         CountdownFinished();
     }
 }

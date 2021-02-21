@@ -13,6 +13,10 @@ public class BirdController : MonoBehaviour
 
     public float m_UpForce;
 
+    public AudioSource m_Flap;
+    public AudioSource m_Score;
+    public AudioSource m_Hit;
+
     private BirdMovement m_BirdMovement;
 
     private GameManager gameManager;
@@ -34,6 +38,7 @@ public class BirdController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            m_Flap.Play();
             m_BirdMovement.Flap(m_UpForce);
         }
     }
@@ -66,10 +71,12 @@ public class BirdController : MonoBehaviour
     {
         if (collision.CompareTag("Obstacle"))
         {
+            m_Hit.Play();
             m_BirdMovement.SetSimulated(false);
             BirdHit();
         } else if (collision.CompareTag("Score"))
         {
+            m_Score.Play();
             BirdScored();
         }
     }
