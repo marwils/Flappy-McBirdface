@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
     private void OnScored()
     {
         SetScore(m_Score + 1);
-        Debug.Log(m_Score);
     }
 
     private void OnCountdownFinished()

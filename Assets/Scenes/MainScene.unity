@@ -778,8 +778,8 @@ MonoBehaviour:
     min: -1.5
     max: 3.2
   m_VelocityX: -1
-  m_IntervalInSeconds: 1.5
   m_SpawnDistance: 3.6
+  m_DesignResolution: {x: 1440, y: 2960}
 --- !u!1 &1001271349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,7 +1290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582657111}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0017929524, y: -5.0158706, z: -227.79669}
+  m_LocalPosition: {x: -0.0017929524, y: -4.92, z: -227.79669}
   m_LocalScale: {x: 2220, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 184359187}

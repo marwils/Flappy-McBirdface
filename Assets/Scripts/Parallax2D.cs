@@ -12,11 +12,17 @@ public class Parallax2D : MonoBehaviour
 
     public float m_VelocityX;
 
-    public float m_IntervalInSeconds;
-
     public float m_SpawnDistance;
 
+    public Vector2 m_DesignResolution;
+
     private List<GameObject> m_Objects;
+
+    private float TargetAspect { get => m_DesignResolution.x / m_DesignResolution.y; }
+
+    private float AspectMultiplier { get => Camera.main.aspect / TargetAspect; }
+
+    private float SpawnXTimesAspect { get => m_SpawnX * AspectMultiplier; }
 
     private void Start()
     {
@@ -43,7 +49,7 @@ public class Parallax2D : MonoBehaviour
         } else
         {
             float lastX = m_Objects[m_Objects.Count - 1].transform.position.x;
-            if (Mathf.Max(lastX, m_SpawnDistance) - Mathf.Min(lastX, m_SpawnDistance) >= m_SpawnDistance)
+            if (Mathf.Max(lastX, SpawnXTimesAspect) - Mathf.Min(lastX, SpawnXTimesAspect) >= m_SpawnDistance)
             {
                 Spawn();
             }
@@ -57,7 +63,7 @@ public class Parallax2D : MonoBehaviour
             obj.transform.localPosition += Vector3.right * m_VelocityX * Time.deltaTime;
         }
 
-        if (m_Objects.Count > 0 && m_Objects[0].transform.localPosition.x < -m_SpawnX)
+        if (m_Objects.Count > 0 && m_Objects[0].transform.localPosition.x < -SpawnXTimesAspect)
         {
             Destroy(m_Objects[0]);
             m_Objects.RemoveAt(0);
@@ -68,7 +74,10 @@ public class Parallax2D : MonoBehaviour
     {
         GameObject go = Instantiate(m_Prefab, Vector3.zero, Quaternion.identity) as GameObject;
         go.transform.parent = this.transform;
-        go.transform.localPosition = new Vector3(m_SpawnX, Random.Range(m_SpawnYRange.min, m_SpawnYRange.max), 0);
+        Vector3 pos = Vector3.zero;
+        pos.x = SpawnXTimesAspect;
+        pos.y = Random.Range(m_SpawnYRange.min, m_SpawnYRange.max);
+        go.transform.localPosition = pos;
         m_Objects.Add(go);
     }
 
